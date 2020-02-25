@@ -1,6 +1,8 @@
 /* 1. Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer. You don't need to validate the form of the Roman numeral.
 
-        Modern Roman numerals are written by expressing each decimal digit of the number to be encoded separately, starting with the leftmost digit and skipping any 0s. So 1990 is rendered "MCMXC" (1000 = M, 900 = CM, 90 = XC) and 2008 is rendered "MMVIII" (2000 = MM, 8 = VIII). The Roman numeral for 1666, "MDCLXVI", uses each letter in descending order.
+        Modern Roman numerals are written by expressing each decimal digit of the number to be encoded separately, starting with the leftmost digit and skipping any 0s. 
+        //So 1990 is rendered "MCMXC" (1000 = M, 900 = CM, 90 = XC) and 2008 is rendered "MMVIII" (2000 = MM, 8 = VIII). The Roman numeral for 1666, "MDCLXVI",
+         uses each letter in descending order.
 
         Example:
 
@@ -17,7 +19,8 @@
             D          500
             M          1,000 
     
-    2. Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+    2. Complete the method/function so that it converts dash/underscore delimited words into camel casing. 
+    The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
         Examples:
 
         toCamelCase("the-stealth-warrior") // returns "theStealthWarrior"
@@ -31,3 +34,43 @@
             filter_list([1,'a','b',0,15]) == [1,0,15]
             filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
 */
+//2 I added the char parameter to specify which character we want to remove 
+function withSplit(word, char) {
+    var array = word.split(char);
+    var arr = array[0]
+
+
+    arr = array.map(function (element) {
+        return element.slice(0, 1).toUpperCase() + element.slice(1, element.length)
+    });
+    return arr.reduce(function (acc, element) {
+        return acc + element
+    }, "")
+}
+
+
+// function toCamelCase(word) {
+//     var array = word.split("-");
+//     var arr = []
+//     //var str =""
+
+//     arr = array.map(function (element) {
+//         return element.slice(0, 1).toUpperCase() + element.slice(1, element.length)
+//     });
+//     return arr.reduce(function (acc, element) {
+//         return acc + element
+//     }, "")
+
+}
+//3
+// still when I enter a nested array doesn't give me the wished result even though the type of an array is an object
+function filter_list(array) {
+    for (var i = 0; i < array.length; i++) {
+        if ((typeof array[i] === "number" && array[i] < 0) && (typeof array[i] !== "number" || typeof array[i] !== " string")) {
+            return "Please enter a positive number or a string"
+        }
+    }
+    return array.filter(function (element) {
+        return typeof element === "number"
+    })
+}
