@@ -18,6 +18,30 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
 
-var maxProfit = function(prices) {
-  // YOUR CODE HERE
-};
+var maxProfit = function (prices) {
+  var min = prices[0];
+  var max = 0;
+  var indexx = 0
+
+  for (var i = 1; i < prices.length; i++) {
+    if (prices[i] < min) {
+      min = prices[i];
+      indexx = i;
+    }
+    else {
+      min = min;
+    }
+  }
+
+  max = prices[indexx]
+  for (var i = indexx; i < prices.length; i++) {
+    if (prices[i] > max) {
+      max = prices[i];
+    }
+    else {
+      max = max;
+    }
+  }
+
+  return max - min;
+}
